@@ -9,7 +9,7 @@
 	},
 	"main": "./lib/sg-messaging-client",
 	"dependencies": {
-
+		"kue": "latest"
 	},
 	"devDependencies": {
 		"mocha": "1.18.2",
