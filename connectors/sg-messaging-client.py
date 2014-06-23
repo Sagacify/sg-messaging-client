@@ -18,7 +18,7 @@ class sgMessagingClient (object):
 			commandName = commandNames[i]
 			commands[commandName] = {}
 
-		def responseCommandList ():
+		def responseCommandList (self):
 			return commands
 
 		return responseCommandList
