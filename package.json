@@ -5,12 +5,11 @@
 	"private": true,
 	"author": "Sagacify (https://github.com/Sagacify)",
 	"engines": {
-		"node": "0.10.22"
+		"node": "~0.10.29"
 	},
 	"main": "./lib/sg-messaging-client",
 	"dependencies": {
-		"kue": "latest",
-		"zerorpc": "latest"
+		"kue": "latest"
 	},
 	"devDependencies": {
 		"mocha": "1.18.2",
