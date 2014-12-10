@@ -1,26 +1,36 @@
 {
 	"name": "sg-messaging-client",
-	"description": "Sagacify's messaging library, client part.",
-	"version": "0.0.1",
 	"private": true,
-	"author": "Sagacify (https://github.com/Sagacify)",
-	"engines": {
-		"node": "~0.10.29"
+	"version": "1.0.0",
+	"description": "Sagacify's messaging library, client side.",
+	"main": "./src/sgs-messaging-client",
+	"scripts": {
+		"test": "NODE_ENV=development grunt test"
 	},
-	"main": "./lib/sg-messaging-client",
 	"dependencies": {
-		"kue": "latest"
+		"kue": "~0.8.9"
 	},
 	"devDependencies": {
-		"mocha": "1.18.2",
-		"jsdoc": "latest",
-		"chai": "1.9.1"
+		"mocha": "^1.21.4",
+		"grunt-cli": "^0.1.13",
+		"load-grunt-tasks": "^0.6.0",
+		"grunt-contrib-jshint": "^0.10.0",
+		"grunt-contrib-clean": "^0.6.0",
+		"grunt-mocha-test": "^0.11.0",
+		"grunt-istanbul": "^0.2.4",
+		"grunt-jsonlint": "^1.0.4",
+		"grunt-jscs": "^0.6.1"
+	},
+	"peerDependencies": {
+		"grunt": "^0.4.5"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Sagacify/sg-messaging-client.git"
+		"url": "https://github.com/Sagacify/sg-messaging-client"
 	},
-	"scripts": {
-		"test": "node_modules/mocha/bin/mocha --timeout 1000 --reporter spec test/test.js"
-	}
+	"author": "Mickael van der Beek (https://github.com/Mickael-van-der-Beek)",
+	"bugs": {
+		"url": "https://github.com/Sagacify/sg-messaging-client/issues"
+	},
+	"homepage": "https://github.com/Sagacify/sg-messaging-client"
 }
