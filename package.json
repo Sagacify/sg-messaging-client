@@ -8,7 +8,7 @@
 		"test": "NODE_ENV=development grunt test"
 	},
 	"dependencies": {
-		"bull": "0.1.10"
+		"bull": "~0.1.10"
 	},
 	"devDependencies": {
 		"mocha": "^1.21.4",
