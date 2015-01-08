@@ -1,9 +1,11 @@
-var kue = require('kue');
+var bull = require('bull');
 
 module.exports = (function () {
 	'use strict';
 
-	function SGSMessagingClient () {}
+	function SGSMessagingClient () {
+		this.queues = null;
+	}
 
 	SGSMessagingClient.prototype.init = function (config) {
 		config = config || {};
@@ -18,36 +20,16 @@ module.exports = (function () {
 			this.host = config.host;
 		}
 
-		this.q = kue.createQueue({
-			prefix: 'q',
-			redis: {
-				port: this.port,
-				host: this.host,
-				auth: config.password,
-				options: config.options
-			}
-		});
+		this.queues = {};
 	};
 
-	SGSMessagingClient.prototype.subscribe = function (jobName, jobMethod, options) {
-		options = options || {};
-
-		var concurrency = 1;
-		if(typeof options.concurrency === 'number' && options.concurrency > 1) {
-			concurrency = options.concurrency;
+	SGSMessagingClient.prototype.subscribe = function (jobName, jobMethod) {
+		if (!(jobName in this.queues)) {
+			this.queues[jobName] = bull(jobName, this.port, this.host);
 		}
 
-		this.q.process(jobName, concurrency, function (job, done) {
-			var input = job.data;
-			var args = [input];
-
-			if(options.progress === true) {
-				args.push(job.progress.bind(job));
-			}
-
-			args.push(done);
-
-			jobMethod.apply(jobMethod, args);
+		this.queues[jobName].process(function (job, done) {
+			jobMethod.call(jobMethod, job.data, done);
 		});
 	};
 
