@@ -31,6 +31,8 @@ module.exports = (function () {
 		this.queues[jobName].process(function (job, done) {
 			jobMethod.call(jobMethod, job.data, done);
 		});
+
+		return this.queues[jobName];
 	};
 
 	return new SGSMessagingClient();
